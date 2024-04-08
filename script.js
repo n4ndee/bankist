@@ -346,7 +346,7 @@ btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
   if (
-    inputCloseUsername.value === currentAccount.username &&
+    inputCloseUsername.value === currentAccount?.username &&
     +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
