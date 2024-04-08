@@ -54,6 +54,7 @@ const accounts = [account1, account2];
 const labelWelcome = document.querySelector(".welcome");
 const labelDate = document.querySelector(".date");
 const labelBalance = document.querySelector(".balance__value");
+const labelLoanAmount = document.querySelector(".form__label--loan");
 const labelSumIn = document.querySelector(".summary__value--in");
 const labelSumOut = document.querySelector(".summary__value--out");
 const labelSumInterest = document.querySelector(".summary__value--interest");
@@ -275,7 +276,7 @@ btnLogin.addEventListener("click", function (e) {
 
     // Update UI
     updateUI(currentAccount);
-  }
+  } else alert("Incorrect login details!");
 });
 
 btnTransfer.addEventListener("click", function (e) {
@@ -285,8 +286,6 @@ btnTransfer.addEventListener("click", function (e) {
   const receiverAcc = accounts.find(
     (account) => account.username === inputTransferTo.value
   );
-
-  inputTransferAmount.value = inputTransferTo.value = "";
 
   if (
     amount > 0 &&
@@ -304,11 +303,12 @@ btnTransfer.addEventListener("click", function (e) {
 
     // Update UI
     updateUI(currentAccount);
+    inputTransferAmount.value = inputTransferTo.value = "";
 
     // Reset timer
     clearInterval(timer);
     timer = startLogOutTimer();
-  }
+  } else alert("Incorrect transfer details!");
 });
 
 btnLoan.addEventListener("click", function (e) {
@@ -320,6 +320,8 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
+    labelLoanAmount.textContent = "Approving...";
+
     setTimeout(function () {
       // Add movement
       currentAccount.movements.push(amount);
@@ -329,14 +331,15 @@ btnLoan.addEventListener("click", function (e) {
 
       // Update UI
       updateUI(currentAccount);
+      labelLoanAmount.textContent = "Amount";
 
       // Reset timer
       clearInterval(timer);
       timer = startLogOutTimer();
     }, 2500);
-  }
 
-  inputLoanAmount.value = "";
+    inputLoanAmount.value = "";
+  } else alert("Incorrect loan amount!");
 });
 
 btnClose.addEventListener("click", function (e) {
@@ -359,7 +362,7 @@ btnClose.addEventListener("click", function (e) {
     inputCloseUsername.value = inputClosePin.value = "";
 
     labelWelcome.textContent = "Log in to get started";
-  }
+  } else alert("Incorrect account details!");
 });
 
 let sorted = false;

@@ -22,16 +22,26 @@
       <form class="login">
         <input
           type="text"
-          placeholder="user"
+          placeholder="User"
           class="login__input login__input--user"
+          list="usernames"
         />
+        <datalist id="usernames">
+          <option value="js"></option>
+          <option value="jd"></option>
+        </datalist>
         <!-- In practice, use type="password" -->
         <input
           type="text"
           placeholder="PIN"
           maxlength="4"
           class="login__input login__input--pin"
+          list="pins"
         />
+        <datalist id="pins">
+          <option value="1111"></option>
+          <option value="2222"></option>
+        </datalist>
         <button class="login__btn">&rarr;</button>
       </form>
     </nav>
