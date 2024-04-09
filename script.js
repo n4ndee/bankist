@@ -24,7 +24,7 @@ const account1 = {
     "2024-04-04T10:51:36.790Z",
   ],
   currency: "EUR",
-  locale: "hu-HU", // pt-PT
+  locale: "pt-PT",
 };
 
 const account2 = {
